@@ -1,7 +1,7 @@
 lua-template
 ============
 
-The simplest Lua template engine
+The simplest Lua template engine in just few lines of code
 
 Installation
 ------------
@@ -18,7 +18,7 @@ nor simply using one-liner
 
 `(echo "return function(_)_[=["; sed -e "s/#[(]/]=]_(/g; s/[)]#/)_[=[/g; s/#\[/]=] /g;s/\]#/ _[=[/g"; echo "]=] end") < template.tpl > template.lua`
 
-This can also be done by passint a string to  `template.compile`.
+This can also be done by passing a string to  `template.compile`.
 
 Syntax
 ------
@@ -32,8 +32,8 @@ In short, Lua variables must be included beetween parenthsises and Lua statement
 <ul>
 #[for i = 1, 3 do]#
   <li>item ##(i)#</li>
-</ul>
 #[end]# 
+</ul>
 ```
 
 ### Conditional
@@ -46,7 +46,7 @@ That's right!
 ```
 
 ### Template inclusion
-Templates are compiled to a general Lua file and hence can be loaded by "`require`" statement
+Templates are compiled to a general Lua file and hence can be loaded by `require` statement:
 ```
 <html>
   <script>#(require "scripts")#</script>
