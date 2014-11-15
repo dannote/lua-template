@@ -2,7 +2,7 @@ package = "template"
 version = "0.1-1"
 
 source = {
-  url = "https://github.com/dannote/lua-template"
+  url = "https://github.com/dannote/lua-template.git"
 }
 
 description = {
