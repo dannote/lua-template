@@ -1,0 +1,13 @@
+#!/usr/bin/env lua
+local template = require "template"
+local i = 1
+while i <= #arg do
+  if arg[i] == "-o" then
+    i = i + 1
+    io.output(arg[i])
+  else
+    io.input(arg[i])
+  end
+  i = i + 1
+end
+io.write(template.parse(io.read("*a")))
