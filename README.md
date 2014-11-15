@@ -1,7 +1,7 @@
 lua-template
 ============
 
-The simplest Lua template engine in just few lines of code
+The simplest Lua template engine in just a few lines of code
 
 Installation
 ------------
