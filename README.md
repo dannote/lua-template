@@ -24,13 +24,15 @@ This can also be done by passing a string to  `template.compile`.
 
 Syntax
 ------
-In short, Lua variables must be included beetween parenthsises and Lua statements must be placed beetween square brackets.
+In short, Lua expressions must be included beetween parenthsises and Lua statements must be placed beetween square brackets.
 
-### Variables
-`<a href="#(foo)#">#(bar)#</a>`
+### Variables and expressions
+```html
+<a href="page-#(page + 2)#">#(next)#</a>
+```
 
 ### Loops
-```lua
+```html
 <ul>
 #[for i = 1, 3 do]#
   <li>item ##(i)#</li>
@@ -39,7 +41,7 @@ In short, Lua variables must be included beetween parenthsises and Lua statement
 ```
 
 ### Conditional
-```lua
+```html
 #[if 1 > 2 then]#
 Impossible!
 #[else]#
@@ -49,9 +51,10 @@ That's right!
 
 ### Template inclusion
 Templates are compiled to a general Lua file and hence can be loaded by `require` statement:
-```lua
+```html
 <html>
   <script>#(require "scripts")#</script>
+  <style>#(require "styles")#</style>
 </html>
 ```
 
