@@ -4,7 +4,9 @@ function template.print(data, args, callback)
   local callback = callback or print
   local function exec(data)
     if type(data) == "function" then
-      setfenv(data, args or {})
+      local args = args or {}
+      setmetatable(args, { __index = _G })
+      setfenv(data, args)
       data(exec)
     else
       callback(data)
