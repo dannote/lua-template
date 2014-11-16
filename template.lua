@@ -15,7 +15,7 @@ end
 
 function template.parse(data)
   return "return function(_) _[=[" ..
-    data:gsub("#%(", "]=]_("):gsub("%)#", ")_[=["):gsub("#%[", "]=] "):gsub("%]#", " _[=[") ..
+    data:gsub("<%%", "]=]_("):gsub("%%>", ")_[=["):gsub("<%?", "]=] "):gsub("%?>", " _[=[") ..
     "]=] end"
 end
 

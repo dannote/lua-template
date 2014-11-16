@@ -8,7 +8,8 @@ source = {
 description = {
   summary = "The simplest Lua template engine in just a few lines of code",
   homepage = "https://github.com/dannote/lua-template",
-  maintainer = "Danila Poyarkov <dannotemail@gmail.com>"
+  maintainer = "Danila Poyarkov <dannotemail@gmail.com>",
+  license = "MIT"
 }
 
 dependencies = {
