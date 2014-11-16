@@ -9,7 +9,7 @@ function template.print(data, args, callback)
       setfenv(data, args)
       data(exec)
     else
-      callback(data)
+      callback(tostring(data))
     end
   end
   exec(data)
