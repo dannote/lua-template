@@ -60,4 +60,8 @@ Templates are compiled to a general Lua file and hence can be loaded by `require
 
 Evaluating templates
 --------------------
-`template.print` takes three arguments: template function, a table with variables passed to the template and optionally a callback function, which handles string printing (`print` is used by default). 
+`template.print` takes three arguments: template function, a table with variables passed to the template and optionally a callback function, which handles string printing (`print` is used by default).
+
+Compressing templates
+---------------------
+`template.compile` has an optional `minify` argument and `templatec` has `-m` option. 

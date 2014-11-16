@@ -15,14 +15,19 @@ function template.print(data, args, callback)
   exec(data)
 end
 
-function template.parse(data)
-  return "return function(_) _[=[" ..
+function template.parse(data, minify)
+  local str = "return function(_) _[=[" ..
     data:gsub("<%%", "]=]_("):gsub("%%>", ")_[=["):gsub("<%?", "]=] "):gsub("%?>", " _[=[") ..
     "]=] end"
+  if minify then
+    return str:gsub("(^[ %s]*|[ %s]*$)", ""):gsub("%s+", " ")
+  else
+    return str
+  end
 end
 
-function template.compile(data)
-  return loadstring(template.parse(data))()
+function template.compile(...)
+  return loadstring(template.parse(...))()
 end
 
 return template
