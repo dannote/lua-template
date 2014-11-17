@@ -25,12 +25,11 @@ function template.parse(data, minify)
     gsub("%?>", " _[=[") ..
     "]=] end"
   if minify then
-    return str:
+    str = str:
     gsub("(^[ %s]*|[ %s]*$)", ""):
     gsub("%s+", " ")
-  else
-    return str
   end
+  return str
 end
 
 function template.compile(...)
