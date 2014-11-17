@@ -17,7 +17,7 @@ Templates can be compiled by either running
 nor simply using one-liner
 
 ```bash
-(echo "return function(_)_[=["; sed -e "s/<%/]=]_(/g; s/%>/)_[=[/g; s/<[?]/]=] /g; s/[?]>/ _[=[/g"; echo "]=] end") < template.tpl > template.lua
+(echo 'return function(_)_[=['; sed -e 's/[][]=[][]/]=]_"\0"_[=[/g; s/<%/]=]_(/g; s/%>/)_[=[/g; s/<[?]/]=] /g; s/[?]>/ _[=[/g'; echo ']=] end') < template.tpl > template.lua
 ```
 
 This can also be done by passing a string to  `template.compile`.

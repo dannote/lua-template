@@ -17,10 +17,17 @@ end
 
 function template.parse(data, minify)
   local str = "return function(_) _[=[" ..
-    data:gsub("<%%", "]=]_("):gsub("%%>", ")_[=["):gsub("<%?", "]=] "):gsub("%?>", " _[=[") ..
+    data:
+    gsub("[][]=[][]", ']=]_"%1"_[=['):
+    gsub("<%%", "]=]_("):
+    gsub("%%>", ")_[=["):
+    gsub("<%?", "]=] "):
+    gsub("%?>", " _[=[") ..
     "]=] end"
   if minify then
-    return str:gsub("(^[ %s]*|[ %s]*$)", ""):gsub("%s+", " ")
+    return str:
+    gsub("(^[ %s]*|[ %s]*$)", ""):
+    gsub("%s+", " ")
   else
     return str
   end
