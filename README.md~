@@ -53,8 +53,8 @@ That's right!
 Templates are compiled to a general Lua file and hence can be loaded by `require` statement:
 ```html
 <html>
-  <script><% require "scripts" %></script>
-  <style><% require "styles" %></style>
+  <script><? require "scripts" ?></script>
+  <style><? require "styles" ?></style>
 </html>
 ```
 
