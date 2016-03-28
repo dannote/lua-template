@@ -1,5 +1,16 @@
 local template = {}
 
+function template.escape(data)
+  return data:gsub("[\">/<'&]", {
+    ["&"] = "&amp;",
+    ["<"] = "&lt;",
+    [">"] = "&gt;",
+    ['"'] = "&quot;",
+    ["'"] = "&#39;",
+    ["/"] = "&#47;"
+  })
+end
+
 function template.print(data, args, callback)
   local callback = callback or print
   local function exec(data)
@@ -16,19 +27,26 @@ function template.print(data, args, callback)
 end
 
 function template.parse(data, minify)
-  local str = "return function(_) _[=[" ..
-    data:
-    gsub("[][]=[][]", ']=]_"%1"_[=['):
-    gsub("<%%", "]=]_("):
-    gsub("%%>", ")_[=["):
-    gsub("<%?", "]=] "):
-    gsub("%?>", " _[=[") ..
-    "]=] end"
+  local str = 
+    "return function(_)" .. 
+      "function __(...)" ..
+        "_(require('template').escape(...))" ..
+      "end " ..
+      "_[=[" ..
+      data:
+        gsub("[][]=[][]", ']=]_"%1"_[=['):
+        gsub("<%%", "]=]__("):
+        gsub("<%%=", "]=]_("):
+        gsub("%%>", ")_[=["):
+        gsub("<%?", "]=] "):
+        gsub("%?>", " _[=[") ..
+      "]=] " ..
+    "end"
   if minify then
     str = str:
-    gsub("^[ %s]*", ""):
-    gsub("[ %s]*$", ""):
-    gsub("%s+", " ")
+      gsub("^[ %s]*", ""):
+      gsub("[ %s]*$", ""):
+      gsub("%s+", " ")
   end
   return str
 end

@@ -1,7 +1,7 @@
 lua-template
 ============
 
-The simplest Lua template engine in just a few lines of code
+The simplest Lua HTML template engine in just a few lines of code
 
 Installation
 ------------
@@ -14,13 +14,7 @@ Templates can be compiled by either running
 
 `templatec template.tpl -o template.lua`
 
-nor simply using one-liner
-
-```bash
-(echo 'return function(_)_[=['; sed -e 's/[][]=[][]/]=]_"\0"_[=[/g; s/<%/]=]_(/g; s/%>/)_[=[/g; s/<[?]/]=] /g; s/[?]>/ _[=[/g'; echo ']=] end') < template.tpl > template.lua
-```
-
-This can also be done by passing a string to  `template.compile`.
+nor by passing a string to  `template.compile`.
 
 Syntax
 ------
@@ -29,6 +23,11 @@ In short, Lua expressions must be included between percent signs and Lua stateme
 ### Variables and expressions
 ```html
 <a href="page-<%page + 2%>"><%next%></a>
+```
+
+### Variables and expressions without HTML escaping
+```html
+<body><%=content%></body>
 ```
 
 ### Loops
