@@ -1,7 +1,7 @@
 local template = {}
 
 function template.escape(data)
-  return data:gsub("[\">/<'&]", {
+  return tostring(data or ''):gsub("[\">/<'&]", {
     ["&"] = "&amp;",
     ["<"] = "&lt;",
     [">"] = "&gt;",
@@ -20,7 +20,7 @@ function template.print(data, args, callback)
       setfenv(data, args)
       data(exec)
     else
-      callback(tostring(data))
+      callback(tostring(data or ''))
     end
   end
   exec(data)
