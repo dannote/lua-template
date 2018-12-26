@@ -27,7 +27,7 @@ In short, Lua expressions must be included between percent signs and Lua stateme
 
 ### Variables and expressions without HTML escaping
 ```html
-<body><%=content%></body>
+<body><%= content%></body>
 ```
 
 ### Loops
@@ -52,8 +52,8 @@ That's right!
 Templates are compiled to a general Lua file and hence can be loaded by `require` statement:
 ```html
 <html>
-  <script><% require "scripts" %></script>
-  <style><% require "styles" %></style>
+  <script><%= require "scripts" %></script>
+  <style><%= require "styles" %></style>
 </html>
 ```
 
