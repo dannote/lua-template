@@ -52,7 +52,11 @@ function template.parse(data, minify)
 end
 
 function template.compile(...)
-  return loadstring(template.parse(...))()
+  local f, err = loadstring(template.parse(...))
+  if err then
+    error(err)
+  end
+  return f()
 end
 
 return template
