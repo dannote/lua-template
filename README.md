@@ -22,19 +22,19 @@ In short, Lua expressions must be included between percent signs and Lua stateme
 
 ### Variables and expressions
 ```html
-<a href="page-<%page + 2%>"><%next%></a>
+<a href="page-<%page + 2%>"><% next %></a>
 ```
 
 ### Variables and expressions without HTML escaping
 ```html
-<body><%= content%></body>
+<body><%= content %></body>
 ```
 
 ### Loops
 ```html
 <ul>
 <? for i = 1, 3 do ?>
-  <li>item #<%i%></li>
+  <li>item #<% i %></li>
 <? end ?> 
 </ul>
 ```

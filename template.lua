@@ -15,10 +15,23 @@ function template.print(data, args, callback)
   local callback = callback or print
   local function exec(data)
     if type(data) == "function" then
-      local args = args or {}
-      setmetatable(args, { __index = _G })
-      setfenv(data, args)
-      data(exec)
+      local env = args or {}
+      setmetatable(env, { __index = _G })
+      if _ENV then -- Lua 5.2+
+        local wrapper, err = load([[
+          return function(_ENV, exec)
+            local f = ...
+            f(exec)
+          end
+        ]], "wrapper", "t", env)
+        if not wrapper then
+          error(err)
+        end
+        wrapper()(env, exec, data)
+      else
+        setfenv(data, env)
+        data(exec)
+      end
     else
       callback(tostring(data or ''))
     end

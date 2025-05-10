@@ -1,5 +1,5 @@
 package = "template"
-version = "0.2-3"
+version = "0.3-1"
 
 source = {
   url = "git://github.com/dannote/lua-template.git"
